@@ -33,6 +33,9 @@
 			        <li role="presentation" class="">
 			            <a href="#Obras" aria-controls="Obras" role="tab" data-toggle="tab">Obras</a>
 			        </li>
+			        <li role="presentation" class="">
+			            <a href="#Emails" aria-controls="Emails" role="tab" data-toggle="tab">E-mails</a>
+			        </li>
 			    </ul>
 			
 			    <!-- Tab panes -->
