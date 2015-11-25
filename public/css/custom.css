@@ -1,0 +1,9 @@
+/*
+    Custom styles
+----------------------------
+*/
+
+/* CLIENTES */
+table#clients-list tbody tr:hover {
+    cursor: pointer;
+}
