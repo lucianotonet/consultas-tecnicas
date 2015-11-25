@@ -1,0 +1,77 @@
++--------+----------+------------------------------------------------------+--------------------------------+---------------------------------------------------------------+------------+
+| Domain | Method   | URI                                                  | Name                           | Action                                                        | Middleware |
++--------+----------+------------------------------------------------------+--------------------------------+---------------------------------------------------------------+------------+
+|        | GET|HEAD | /                                                    |                                | Closure                                                       |            |
+|        | POST     | contact                                              | contact.store                  | App\Http\Controllers\ContactController@store                  |            |
+|        | GET|HEAD | contact                                              | contact.index                  | App\Http\Controllers\ContactController@index                  |            |
+|        | GET|HEAD | contact/create                                       | contact.create                 | App\Http\Controllers\ContactController@create                 |            |
+|        | PATCH    | contact/{contact}                                    |                                | App\Http\Controllers\ContactController@update                 |            |
+|        | DELETE   | contact/{contact}                                    | contact.destroy                | App\Http\Controllers\ContactController@destroy                |            |
+|        | PUT      | contact/{contact}                                    | contact.update                 | App\Http\Controllers\ContactController@update                 |            |
+|        | GET|HEAD | contact/{contact}                                    | contact.show                   | App\Http\Controllers\ContactController@show                   |            |
+|        | GET|HEAD | contact/{contact}/edit                               | contact.edit                   | App\Http\Controllers\ContactController@edit                   |            |
+|        | GET|HEAD | emailmessage                                         | emailmessage.index             | App\Http\Controllers\EmailMessageController@index             |            |
+|        | POST     | emailmessage                                         | emailmessage.store             | App\Http\Controllers\EmailMessageController@store             |            |
+|        | GET|HEAD | emailmessage/create                                  | emailmessage.create            | App\Http\Controllers\EmailMessageController@create            |            |
+|        | GET|HEAD | emailmessage/{emailmessage}                          | emailmessage.show              | App\Http\Controllers\EmailMessageController@show              |            |
+|        | DELETE   | emailmessage/{emailmessage}                          | emailmessage.destroy           | App\Http\Controllers\EmailMessageController@destroy           |            |
+|        | PUT      | emailmessage/{emailmessage}                          | emailmessage.update            | App\Http\Controllers\EmailMessageController@update            |            |
+|        | PATCH    | emailmessage/{emailmessage}                          |                                | App\Http\Controllers\EmailMessageController@update            |            |
+|        | GET|HEAD | emailmessage/{emailmessage}/edit                     | emailmessage.edit              | App\Http\Controllers\EmailMessageController@edit              |            |
+|        | GET|HEAD | organization                                         | organization.index             | App\Http\Controllers\OrganizationController@index             |            |
+|        | POST     | organization                                         | organization.store             | App\Http\Controllers\OrganizationController@store             |            |
+|        | GET|HEAD | organization/create                                  | organization.create            | App\Http\Controllers\OrganizationController@create            |            |
+|        | PATCH    | organization/{organization}                          |                                | App\Http\Controllers\OrganizationController@update            |            |
+|        | PUT      | organization/{organization}                          | organization.update            | App\Http\Controllers\OrganizationController@update            |            |
+|        | DELETE   | organization/{organization}                          | organization.destroy           | App\Http\Controllers\OrganizationController@destroy           |            |
+|        | GET|HEAD | organization/{organization}                          | organization.show              | App\Http\Controllers\OrganizationController@show              |            |
+|        | GET|HEAD | organization/{organization}/edit                     | organization.edit              | App\Http\Controllers\OrganizationController@edit              |            |
+|        | POST     | project                                              | project.store                  | App\Http\Controllers\ProjectController@store                  |            |
+|        | GET|HEAD | project                                              | project.index                  | App\Http\Controllers\ProjectController@index                  |            |
+|        | GET|HEAD | project/create                                       | project.create                 | App\Http\Controllers\ProjectController@create                 |            |
+|        | GET|HEAD | project/{project}                                    | project.show                   | App\Http\Controllers\ProjectController@show                   |            |
+|        | PATCH    | project/{project}                                    |                                | App\Http\Controllers\ProjectController@update                 |            |
+|        | DELETE   | project/{project}                                    | project.destroy                | App\Http\Controllers\ProjectController@destroy                |            |
+|        | PUT      | project/{project}                                    | project.update                 | App\Http\Controllers\ProjectController@update                 |            |
+|        | GET|HEAD | project/{project}/edit                               | project.edit                   | App\Http\Controllers\ProjectController@edit                   |            |
+|        | POST     | projectstage                                         | projectstage.store             | App\Http\Controllers\ProjectStageController@store             |            |
+|        | GET|HEAD | projectstage                                         | projectstage.index             | App\Http\Controllers\ProjectStageController@index             |            |
+|        | GET|HEAD | projectstage/create                                  | projectstage.create            | App\Http\Controllers\ProjectStageController@create            |            |
+|        | DELETE   | projectstage/{projectstage}                          | projectstage.destroy           | App\Http\Controllers\ProjectStageController@destroy           |            |
+|        | PATCH    | projectstage/{projectstage}                          |                                | App\Http\Controllers\ProjectStageController@update            |            |
+|        | GET|HEAD | projectstage/{projectstage}                          | projectstage.show              | App\Http\Controllers\ProjectStageController@show              |            |
+|        | PUT      | projectstage/{projectstage}                          | projectstage.update            | App\Http\Controllers\ProjectStageController@update            |            |
+|        | GET|HEAD | projectstage/{projectstage}/edit                     | projectstage.edit              | App\Http\Controllers\ProjectStageController@edit              |            |
+|        | POST     | technicalconsult                                     | technicalconsult.store         | App\Http\Controllers\TechnicalConsultController@store         |            |
+|        | GET|HEAD | technicalconsult                                     | technicalconsult.index         | App\Http\Controllers\TechnicalConsultController@index         |            |
+|        | GET|HEAD | technicalconsult/create                              | technicalconsult.create        | App\Http\Controllers\TechnicalConsultController@create        |            |
+|        | DELETE   | technicalconsult/{technicalconsult}                  | technicalconsult.destroy       | App\Http\Controllers\TechnicalConsultController@destroy       |            |
+|        | PATCH    | technicalconsult/{technicalconsult}                  |                                | App\Http\Controllers\TechnicalConsultController@update        |            |
+|        | PUT      | technicalconsult/{technicalconsult}                  | technicalconsult.update        | App\Http\Controllers\TechnicalConsultController@update        |            |
+|        | GET|HEAD | technicalconsult/{technicalconsult}                  | technicalconsult.show          | App\Http\Controllers\TechnicalConsultController@show          |            |
+|        | GET|HEAD | technicalconsult/{technicalconsult}/edit             | technicalconsult.edit          | App\Http\Controllers\TechnicalConsultController@edit          |            |
+|        | POST     | technicalconsultstatus                               | technicalconsultstatus.store   | App\Http\Controllers\TechnicalConsultStatusController@store   |            |
+|        | GET|HEAD | technicalconsultstatus                               | technicalconsultstatus.index   | App\Http\Controllers\TechnicalConsultStatusController@index   |            |
+|        | GET|HEAD | technicalconsultstatus/create                        | technicalconsultstatus.create  | App\Http\Controllers\TechnicalConsultStatusController@create  |            |
+|        | PUT      | technicalconsultstatus/{technicalconsultstatus}      | technicalconsultstatus.update  | App\Http\Controllers\TechnicalConsultStatusController@update  |            |
+|        | DELETE   | technicalconsultstatus/{technicalconsultstatus}      | technicalconsultstatus.destroy | App\Http\Controllers\TechnicalConsultStatusController@destroy |            |
+|        | PATCH    | technicalconsultstatus/{technicalconsultstatus}      |                                | App\Http\Controllers\TechnicalConsultStatusController@update  |            |
+|        | GET|HEAD | technicalconsultstatus/{technicalconsultstatus}      | technicalconsultstatus.show    | App\Http\Controllers\TechnicalConsultStatusController@show    |            |
+|        | GET|HEAD | technicalconsultstatus/{technicalconsultstatus}/edit | technicalconsultstatus.edit    | App\Http\Controllers\TechnicalConsultStatusController@edit    |            |
+|        | GET|HEAD | technicalconsulttype                                 | technicalconsulttype.index     | App\Http\Controllers\TechnicalConsultTypeController@index     |            |
+|        | POST     | technicalconsulttype                                 | technicalconsulttype.store     | App\Http\Controllers\TechnicalConsultTypeController@store     |            |
+|        | GET|HEAD | technicalconsulttype/create                          | technicalconsulttype.create    | App\Http\Controllers\TechnicalConsultTypeController@create    |            |
+|        | PUT      | technicalconsulttype/{technicalconsulttype}          | technicalconsulttype.update    | App\Http\Controllers\TechnicalConsultTypeController@update    |            |
+|        | DELETE   | technicalconsulttype/{technicalconsulttype}          | technicalconsulttype.destroy   | App\Http\Controllers\TechnicalConsultTypeController@destroy   |            |
+|        | PATCH    | technicalconsulttype/{technicalconsulttype}          |                                | App\Http\Controllers\TechnicalConsultTypeController@update    |            |
+|        | GET|HEAD | technicalconsulttype/{technicalconsulttype}          | technicalconsulttype.show      | App\Http\Controllers\TechnicalConsultTypeController@show      |            |
+|        | GET|HEAD | technicalconsulttype/{technicalconsulttype}/edit     | technicalconsulttype.edit      | App\Http\Controllers\TechnicalConsultTypeController@edit      |            |
+|        | POST     | user                                                 | user.store                     | App\Http\Controllers\UserController@store                     |            |
+|        | GET|HEAD | user                                                 | user.index                     | App\Http\Controllers\UserController@index                     |            |
+|        | GET|HEAD | user/create                                          | user.create                    | App\Http\Controllers\UserController@create                    |            |
+|        | GET|HEAD | user/{user}                                          | user.show                      | App\Http\Controllers\UserController@show                      |            |
+|        | PUT      | user/{user}                                          | user.update                    | App\Http\Controllers\UserController@update                    |            |
+|        | DELETE   | user/{user}                                          | user.destroy                   | App\Http\Controllers\UserController@destroy                   |            |
+|        | PATCH    | user/{user}                                          |                                | App\Http\Controllers\UserController@update                    |            |
+|        | GET|HEAD | user/{user}/edit                                     | user.edit                      | App\Http\Controllers\UserController@edit                      |            |
++--------+----------+------------------------------------------------------+--------------------------------+---------------------------------------------------------------+------------+
