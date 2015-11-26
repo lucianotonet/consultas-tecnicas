@@ -23,7 +23,7 @@ class Project extends Model {
 
 	public function contacts()
 	{
-		return $this->gasMany('App\Contact');
+		return $this->hasMany('App\Contact');
 	}
 
 	public function stages()

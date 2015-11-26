@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Contact;
+use App\Project;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,15 @@ class ContactController extends Controller {
     *
     * @return Response
     */
-   public function index(Request $request)
-   {   		
-	   	$contacts 	= Contact::orderBy( $request->input('orderby', 'email'), $request->input('order', 'ASC'))->paginate( $request->input('paginate', 50) );  	   	
-	   		   	
+   public function index( $obra_id = null, Request $request)
+   {   	
+   		if( $obra_id != null ){
+   			$project 	= Project::find( $obra_id )->get();
+   			dd( $project );
+	   		$contacts   = $project->contacts;
+   		}else{
+   			$contacts 	= Contact::orderBy( $request->input('orderby', 'email'), $request->input('order', 'ASC'))->paginate( $request->input('paginate', 50) );  	   	
+   		}
 	   	return view('contacts.index')->with('contacts', $contacts);
    }
 
