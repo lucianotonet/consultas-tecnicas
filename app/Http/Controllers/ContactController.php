@@ -24,7 +24,6 @@ class ContactController extends Controller {
    		}else{
    			$contacts 	= Contact::orderBy( $request->input('orderby', 'email'), $request->input('order', 'ASC'))->paginate( $request->input('paginate', 50) );  	   	
    		}
-	   		   	
 	   	return view('contacts.index')->with('contacts', $contacts);
    }
 

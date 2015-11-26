@@ -47,8 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('emailmessage', 'EmailMessageController');
 
 	Route::resource('obras', 'ProjectController');
-	Route::resource('etapas', 'ProjectStageController');
-	Route::resource('disciplinas', 'ProjectDisciplineController');
+	Route::resource('obras/etapas', 'ProjectStageController');
+	Route::resource('obras/disciplinas', 'ProjectDisciplineController');
 
 	Route::resource('obras/{obra_id}/etapas', 'ProjectStageController');
 	Route::resource('obras/{obra_id}/disciplinas', 'ProjectDisciplineController');
@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('consultas-tecnicas', 'TechnicalConsultController');
 	Route::resource('consultas-tecnicas/status', 'TechnicalConsultStatusController');
-	Route::resource('consultas-tecnicas-tipo', 'TechnicalConsultTypeController');	
+	Route::resource('consultas-tecnicas/tipos', 'TechnicalConsultTypeController');	
 
 	Route::resource('obras/{obra_id}/etapas/{etapa_id}/consultas-tecnicas', 'TechnicalConsultController');
 	Route::resource('obras/{obra_id}/etapas/{etapa_id}/consultas-tecnicas', 'TechnicalConsultController');
@@ -64,7 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	Route::resource('users', 'UserController');
 	Route::resource('contatos', 'ContactController');
-		
+
 	Route::resource('clientes', 'ClientController');
 	Route::get('/{slug}', 'ClientController@showBySlug');	
 	Route::get('/{slug}/edit', 'ClientController@edit');

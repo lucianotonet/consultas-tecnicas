@@ -54,7 +54,6 @@
 			{!! Form::close() !!}  
 		</div>
 
-
 		<div role="tabpanel">
 		    <!-- Nav tabs -->
 		    <ul class="nav nav-tabs" role="tablist">
@@ -112,6 +111,7 @@
 		        <div role="tabpanel" class="tab-pane" id="tab-4">
 		        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus non, laborum quae molestiae, facere consequuntur, inventore aut aliquid doloremque excepturi labore id eos vitae quos repudiandae autem amet nulla! Odio!
 		        </div>
+
 		    </div>
 		</div>
 
