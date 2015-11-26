@@ -74,13 +74,16 @@
 		    <!-- Tab panes -->
 		    <div class="tab-content">
 		        <div role="tabpanel" class="tab-pane active" id="tab-1">
+					<div>
+			        	<div class="navbar-right">
+			        		<a href="{!! url('obras/'.$project->id.'/etapas/create') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>		        		        			
+                			<a href="{!! url('obras/'.$project->id.'/etapas/create') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>		        		        			
+	        			</div>        			
+			        	<p class="navbar-text navbar-left">
+		        			Text
+			        	</p>	
+		        	</div>
 					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th></th>
-								<th></th>
-							</tr>
-						</thead>
 						<tbody>
 							@foreach ($project->stages as $stage)
 								<tr>
@@ -103,12 +106,36 @@
 					</table>
 		        </div>
 		        <div role="tabpanel" class="tab-pane" id="tab-2">
+		        	<div>
+			        	<div class="navbar-right">	        		        			
+		                	<a href="{!! url('obras/'.$project->id.'/disciplinas/create') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>
+	        			</div>        			
+			        	<p class="navbar-text navbar-left">
+		        			Text
+			        	</p>	
+		        	</div>
 		        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, ipsum odit. Expedita aspernatur est, velit, non maxime, ex consequuntur temporibus dolorem itaque blanditiis accusantium esse sint reprehenderit delectus! Laborum, assumenda.
 		        </div>
 		        <div role="tabpanel" class="tab-pane" id="tab-3">
+		        	<div>
+			        	<div class="navbar-right">	    
+		                	<a href="{!! url('obras/'.$project->id.'/contatos/add') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> Adicionar</a>
+			     		</div>        			
+			        	<p class="navbar-text navbar-left">
+		        			Text
+			        	</p>	
+		        	</div>
 		        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat ipsum doloremque aut recusandae sunt iste inventore consectetur vitae, culpa ullam dolorem aliquid natus, error repellendus minima facere, optio assumenda dolor!
 		        </div>
 		        <div role="tabpanel" class="tab-pane" id="tab-4">
+		       		<div>
+			        	<div class="navbar-right">	    
+		                	<a href="{!! url('obras/'.$project->id.'/consultas-tecnicas/create') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> Adicionar</a>
+		     			</div>        			
+			        	<p class="navbar-text navbar-left">
+		        			Text
+			        	</p>	
+		        	</div>
 		        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus non, laborum quae molestiae, facere consequuntur, inventore aut aliquid doloremque excepturi labore id eos vitae quos repudiandae autem amet nulla! Odio!
 		        </div>
 
