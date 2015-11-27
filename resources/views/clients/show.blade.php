@@ -88,6 +88,17 @@
 			        	
 					</div>
 			        <div role="tabpanel" class="tab-pane" id="Obras">
+
+			        	<div>
+				        	<div class="navbar-right">
+	                			<a href="{!! url('clientes/'.$client->id.'/obras/create') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>		        		        			
+		        			</div>        			
+				        	<p class="navbar-text navbar-left">
+			        			Text
+				        	</p>	
+			        	</div>
+
+
 			        	<table class="table table-hover">
 							<thead>
 								<tr>

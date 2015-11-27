@@ -35,11 +35,11 @@ class ProjectController extends Controller {
      *
      * @return Response
      */
-    public function create( Request $request ) {      
-
+    public function create( Request $request, $client_id = null ) {        
+        
         $clients = $request->user()->clients;
 
-        return view('projects.create', compact('clients'));  
+        return view('projects.create', compact('clients', 'client_id'));  
     }
 
     /**

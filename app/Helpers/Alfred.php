@@ -43,7 +43,7 @@ class Alfred{
 
 
     /**
-	 * Same as DUMP AND DIE
+	 * Same as DIE n' DUMP
 	 * @param  string
 	 * @return [string]
 	 */

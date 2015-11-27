@@ -30,10 +30,10 @@
 			<div class="form-group">
 				<label for="inputCompany" class="col-lg-2 col-sm-2 control-label">Cliente</label>
 				<div class="col-lg-10">
-					<select name="client_id" id="inputStatus" class="form-control">
+					<select name="client_id" id="inputStatus" class="form-control" {{  ( $client_id >= 1 ) ? 'disabled' : '' }}>
 						<option value="">-- Selecione --</option>
 						@foreach ($clients as $client)
-							<option value="{{ $client->id }}">{{ $client->name }}</option>
+							<option value="{{ $client->id }}" {{  (	$client->id == $client_id ) ? 'selected' : '' }}>{{ $client->name }}</option>
 						@endforeach						
 					</select>					
 				</div>

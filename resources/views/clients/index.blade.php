@@ -5,7 +5,7 @@
 <section class="panel">
 	<header class="panel-heading">
 		<div class="pull-right">
-			<a href="{!! route('/clientes/create') !!}" class="btn btn-default btn-sm btn-xs">
+			<a href="{!! url('/clientes/create') !!}" class="btn btn-default btn-sm btn-xs">
 				<i class="fa fa-plus"></i> Adicionar
 			</a>
 		</div>

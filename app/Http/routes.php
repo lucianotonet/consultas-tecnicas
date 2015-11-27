@@ -68,11 +68,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('contatos', 'ContactController');
 	Route::resource('emailmessage', 'EmailMessageController');
 
-	Route::group(['prefix' => 'clientes/{client_id}'], function () {
-		Route::resource('obras', 'ProjectController');
+	Route::group(['prefix' => 'clientes'], function () {
+		Route::resource('/{client_id}/obras', 'ProjectController');
+		Route::group(['prefix' => 'obras/{obra_id}'], function () {
+			Route::resource('etapas', 'ProjectStageController');
+		});
 	});
-	
-	// Route::get('/{slug}', 'ClientController@showBySlug');	
-	// Route::get('/{slug}/edit', 'ClientController@edit');
 	
 });
