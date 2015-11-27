@@ -5,14 +5,14 @@
 <section class="panel">
 	<header class="panel-heading">
 		<div class="pull-right">
-			<a href="{!! url( '/'.$client->slug ) !!}" class="btn btn-default btn-sm btn-xs">
+			<a href="{!! url('/clientes/'.$client->id) !!}" class="btn btn-default btn-sm btn-xs">
 				<i class="fa fa-arrow-left"></i> Voltar
 			</a>
 		</div>
 		Editar cliente <strong>#{!! $client->id !!}</strong>
 	</header>
 	<div class="panel-body">
-		{!! Form::open(array('url' => 'clients/'.$client->id, 'class'=>"form-horizontal", 'method'=>'PATCH' )) !!}
+		{!! Form::open(array('url' => 'clientes/'.$client->id, 'class'=>"form-horizontal", 'method'=>'PATCH' )) !!}
 			<div class="form-group">
 				<label for="inputName" class="col-lg-2 col-sm-2 control-label">Nome</label>
 				<div class="col-lg-10">

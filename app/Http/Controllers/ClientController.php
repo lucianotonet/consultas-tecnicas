@@ -18,7 +18,7 @@ class ClientController extends Controller {
     */
    public function index(Request $request)
    {   		 		
-   		$clients = $request->user()->clients;
+   		$clients = $request->user()->clients;   		
 	   	return view('clients.index')->with('clients', $clients);
    }
 
@@ -49,25 +49,25 @@ class ClientController extends Controller {
 
         	$request->session()->flash( 'sys_notifications', $this->sys_notifications );
 
-            return back()->withInput( $request->all() );
+            return back()->withErrors($validator)->withInput( $request->all() );
         }
 
-        $data = $request->all();
-        $data['slug'] = Alfred::toSlug( $data['name'] );
+        $data = $request->all();        
         $data['owner_id'] = $request->user()->id;
 
         // Create a new Client
 		$client = Client::create( $data );
 
 		if( $client ){
-			$this->sys_notifications[] = array( 'type' => 'success', 'message' => 'Cliente salvo com sucesso!' );		   			
+			$this->sys_notifications[] = array( 'type' => 'success', 'message' => 'Novo cliente adicionado com sucesso!' );		   			
+		   	$request->session()->flash( 'sys_notifications', $this->sys_notifications );	   	
+			return redirect( '/clientes/'.$client->id ); 
 		}else{
 			$this->sys_notifications[] = array( 'type' => 'danger', 'message' => 'Não foi possível criar o cliente!' );		   		
+			$request->session()->flash( 'sys_notifications', $this->sys_notifications );	   
+			return back()->withErrors($validator)->withInput( $request->all() );
 		}
 
-	   	$request->session()->flash( 'sys_notifications', $this->sys_notifications );	   	
-
-		return back()->withErrors($validator)->withInput($request->all()); 
 	}
 
 	/**
@@ -117,10 +117,10 @@ class ClientController extends Controller {
 	 * @param  int  $slug
 	 * @return Response
 	 */
-	public function edit($slug, Request $request)
+	public function edit($id, Request $request)
 	{
-		$client = Client::where('slug',$slug)->first();      		
-
+		$client = Client::find($id);
+		
 		if( $client ){						
 			return view('clients.edit', compact('client'));			
 		}else{

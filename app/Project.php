@@ -13,7 +13,7 @@ class Project extends Model {
 	
 	public function owner()
 	{
-		return $this->belongsTo('App\User');
+		return $this->belongsTo('App\User', 'owner_id');
 	}	
 
 	public function client()

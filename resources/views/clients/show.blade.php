@@ -5,15 +5,18 @@
 <section class="panel">
 	<header class="panel-heading">
 		<div class="pull-right">
-			<a href="{!! url( $client->slug.'/edit') !!}" class="btn btn-default btn-xs">
-				<i class="fa fa-pencil"></i> Editar
-			</a>
-			<a href="{!! url('/clientes') !!}" class="btn btn-default btn-xs">
-				<i class="fa fa-bars"></i> Ver todos
-			</a>
-			<a href="{!! url('clientes') !!}" class="btn btn-danger btn-xs">
-				<i class="fa fa-trash-o"></i> Excluir
-			</a>
+			{!! Form::open(array('url' => 'clientes/'.$client->id , 'method'  => 'delete' )) !!}                   	
+				{{-- <a href="{!! url('/clientes') !!}" class="btn btn-default btn-xs">
+					<i class="fa fa-bars"></i> Ver todos
+				</a> --}}
+				<a href="{!! url( '/clientes/'.$client->id.'/edit') !!}" class="btn btn-default btn-xs">
+					<i class="fa fa-pencil"></i> Editar
+				</a>
+				<a href="mailto:{!!	$client->email !!}" class="btn btn-default btn-xs" title="Enviar e-mail para {!! $client->title !!}">
+					<i class="fa fa-envelope"></i> E-mail
+				</a>
+                <button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('Excluir permanentemente esta obra?');"><i class="fa fa-trash-o"></i> EXCLUIR</button>
+            {!! Form::close() !!}
 		</div>
 		Cliente <strong>#{!! $client->id !!}</strong>
 	</header>
@@ -44,7 +47,7 @@
 
 			        	&nbsp;
 								
-						{!! Form::open(array('url' => $client->slug.'/', 'class'=>"form-horizontal", 'method'=>'PATCH' )) !!}
+						{!! Form::open(array('url' => 'clientes/'.$client->id, 'class'=>"form-horizontal", 'method'=>'PATCH' )) !!}
 							<div class="form-group">
 								<label for="inputName" class="col-lg-2 col-sm-2 control-label">Nome</label>
 								<div class="col-lg-10">
@@ -111,7 +114,7 @@
 												<a href="mailto:{!!	$project->email !!}" class="btn btn-default btn-xs" title="Enviar e-mail para {!! $project->title !!}">
 													<i class="fa fa-envelope"></i>
 												</a>
-						                        <button class="btn btn-default btn-xs" type="submit" onclick="return confirm('Excluir permanentemente esta obra?');"><i class="fa fa-times"></i></button>
+						                        <button class="btn btn-default btn-xs" type="submit" onclick="return confirm('Excluir permanentemente e cliente?');"><i class="fa fa-times"></i></button>
 					                        {!! Form::close() !!}
 					                 	</div>
 									</td>

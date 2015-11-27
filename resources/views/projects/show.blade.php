@@ -5,9 +5,12 @@
 <section class="panel">
 	<header class="panel-heading">
 		<div class="pull-right">
-			<a href="{!! url('obras') !!}" class="btn btn-default btn-sm btn-xs">
-				<i class="fa fa-bars"></i> Ver todas
-			</a>
+			{!! Form::open(array('url' => 'obras/'.$project->id , 'method'  => 'delete' )) !!}                   
+				<a href="{!! url( '/obras/'.$project->id.'/edit') !!}" class="btn btn-default btn-xs">
+					<i class="fa fa-pencil"></i> Editar
+				</a>
+                <button class="btn btn-danger btn-xs" type="submit" onclick="return confirm('Excluir permanentemente esta obra?');"><i class="fa fa-trash-o"></i> EXCLUIR</button>
+            {!! Form::close() !!}
 		</div>
 		Obra <strong>{!! $project->title !!}</strong>
 	</header>
