@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class TechnicalConsult extends Model {
 
-	protected $table = 'technical_consults';
+	protected $table = 'consultas_tecnicas';
 	public $timestamps = true;
-	protected $fillable = array('date', 'type', 'obra_etapa_id', 'owner_id');
-	protected $visible = array('date', 'type', 'obra_etapa_id', 'owner_id');
+	protected $fillable = array('date', 'type', 'project_stage_id', 'owner_id');
+	protected $visible = array('date', 'type', 'project_stage_id', 'owner_id');
 
 	public function getStatus()
 	{

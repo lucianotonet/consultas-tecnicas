@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\ProjectDiscipline;
+
 use App\Http\Controllers\Controller;
 
 class ProjectDisciplineController extends Controller
@@ -80,8 +81,21 @@ class ProjectDisciplineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $projectstage = ProjectDiscipline::find($id);        
+        if(!$projectstage){
+            return back()->withInput( $request->all() );
+        }
+
+        if( $projectstage->destroy( $id ) ){
+            $this->sys_notifications[] = array( 'type' => 'success', 'message' => '<strong><i class="fa fa-check"></i></strong> Disciplina excluída com sucesso!' );                   
+            $request->session()->flash( 'sys_notifications', $this->sys_notifications );        
+            return redirect( '/obras' );
+        }else{
+            $this->sys_notifications[] = array( 'type' => 'danger', 'message' => '<strong><i class="fa fa-warning"></i></strong> Não foi possível excluir a disciplina da obra!' );                
+            $request->session()->flash( 'sys_notifications', $this->sys_notifications );        
+            return back()->withInput( $request->all() );
+        }
     }
 }

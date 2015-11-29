@@ -55,13 +55,13 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('obras/{obra_id}/disciplinas', 'ProjectDisciplineController');
 	Route::resource('obras/{obra_id}/contatos', 'ContactController');
 
-	Route::resource('consultas-tecnicas', 'TechnicalConsultController');
-	Route::resource('consultas-tecnicas/status', 'TechnicalConsultStatusController');
-	Route::resource('consultas-tecnicas/tipos', 'TechnicalConsultTypeController');	
+	Route::resource('consultas_tecnicas', 'TechnicalConsultController');
+	Route::resource('consultas_tecnicas/status', 'TechnicalConsultStatusController');
+	Route::resource('consultas_tecnicas/tipos', 'TechnicalConsultTypeController');	
 	
 
-	Route::resource('obras/{obra_id}/etapas/{etapa_id}/consultas-tecnicas', 'TechnicalConsultController');
-	Route::resource('obras/{obra_id}/etapas/{etapa_id}/consultas-tecnicas', 'TechnicalConsultController');
+	Route::resource('obras/{obra_id}/etapas/{etapa_id}/consultas_tecnicas', 'TechnicalConsultController');
+	Route::resource('obras/{obra_id}/etapas/{etapa_id}/consultas_tecnicas', 'TechnicalConsultController');
 
 	
 	Route::resource('users', 'UserController');

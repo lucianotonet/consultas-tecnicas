@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateObrasDisciplinasTable extends Migration
+class CreateDisciplinasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,13 @@ class CreateObrasDisciplinasTable extends Migration
      */
     public function up()
     {
-        Schema::create('obras_disciplinas', function (Blueprint $table) {
+        Schema::create('disciplinas', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->string('title')->nullable()->index()->unique();
+            $table->text('description')->nullable();
+            $table->integer('owner_id')->unsigned()->nullable();
+
             $table->timestamps();
         });
     }
@@ -25,6 +30,6 @@ class CreateObrasDisciplinasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('obras_disciplinas');
+        Schema::drop('disciplinas');
     }
 }

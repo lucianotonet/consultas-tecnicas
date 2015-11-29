@@ -11,7 +11,7 @@ class CreateConsultasTecnicasTable extends Migration {
 			$table->increments('id');
 			$table->date('date')->nullable()->index();
 			$table->string('type')->nullable();						
-			$table->integer('obra_etapa_id')->unsigned();
+			$table->integer('project_stage_id')->unsigned();
 			$table->timestamps();
 		});
 

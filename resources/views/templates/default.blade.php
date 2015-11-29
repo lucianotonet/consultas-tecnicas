@@ -71,7 +71,7 @@
                                 <i class="fa fa-envelope"></i>
                                 <span class="label label-success">0</span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu ">
                                 <li class="header">Nenhum e-mail não lido</li>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
@@ -225,14 +225,16 @@
                     
                     <!-- System Notifications -->
                     @if(Session::has('sys_notifications'))
-                        @foreach ( Session::get('sys_notifications') as $sys_notification )
-                            <div class="alert alert-{!! $sys_notification['type'] or 'info' !!}">
-                                @if ( !@$sys_notification['important'] )
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                @endif
-                                {!! $sys_notification['message'] !!}
-                            </div>                               
-                        @endforeach
+                        <div class="alert-group">
+                            @foreach ( Session::get('sys_notifications') as $sys_notification )
+                                <div class="alert alert-{!! $sys_notification['type'] or 'info' !!}">
+                                    @if ( !@$sys_notification['important'] )
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    @endif
+                                    {!! $sys_notification['message'] !!}
+                                </div>                               
+                            @endforeach
+                        </div>
                     @endif
                     <!-- /System Notifications -->
 
@@ -240,7 +242,7 @@
                         @foreach ($errors->all() as $error)
                             <div class="alert alert-danger">{{ $error }}</div>
                         @endforeach      
-                    @endif
+                    @endif                    
 
                     @yield('content')
                     

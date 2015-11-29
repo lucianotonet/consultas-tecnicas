@@ -1,7 +1,9 @@
 <?php namespace App\Http\Controllers;
 
-use App\Project;
 use App\Client;
+use App\Project;
+use App\ProjectStage;
+use App\ProjectDiscipline;
 
 use Validator;
 use Illuminate\Http\Request;
@@ -15,11 +17,9 @@ class ProjectController extends Controller {
      *
      * @return Response
      */
-    public function index( Request $request ) {
+    public function index( Request $request, $client_id = null ) {        
 
-        // dd( $request );
-
-        if ( isset( $client_id )) {
+        if ( $client_id != null ) {
             $projects  = Project::where( 'client_id', $client_id )
                                 ->orderBy( $request->input( 'orderby', 'id' ), $request->input( 'order', 'ASC' ) )
                                 ->paginate( $request->input( 'paginate', 50 ) );
@@ -36,10 +36,12 @@ class ProjectController extends Controller {
      * @return Response
      */
     public function create( Request $request, $client_id = null ) {        
-        
+                
+        $project_client = Client::find( $client_id );        
         $clients = $request->user()->clients;
 
-        return view('projects.create', compact('clients', 'client_id'));  
+        $view = ( $request->ajax() ) ? 'projects.create-panel' : 'projects.create';
+        return view( $view, compact('clients', 'client_id'))->with(['client' => @$project_client ]);  
     }
 
     /**
@@ -50,7 +52,8 @@ class ProjectController extends Controller {
     public function store( Request $request ) {
         
         $validator = Validator::make( $request->all(), [
-            'title' => 'required'     
+            'title'     => 'required',  
+            'client_id' => 'required|integer',  
         ]);     
 
         if ($validator->fails()) {
@@ -67,10 +70,20 @@ class ProjectController extends Controller {
 
         // Create a new Project
         $project = Project::create( $data );
-
+        
         if( $project ){
+
+            $project_stage = ProjectStage::create([
+                    'name'          => '1. Geral',
+                    'project_id'    => $project->id,
+                    'owner_id'      => $request->user()->id,                    
+                ]);
+            $project->current_stage = $project_stage->id;
+            $project->save();
+
             $this->sys_notifications[] = array( 'type' => 'success', 'message' => 'Nova obra criada com sucesso!' );                 
-            $request->session()->flash( 'sys_notifications', $this->sys_notifications );        
+            $this->sys_notifications[] = array( 'type' => 'success', 'message' => 'Etapa <strong>Geral</strong> adicionada para a nova Obra.' );
+            $request->session()->flash( 'sys_notifications', $this->sys_notifications );                
             return redirect( '/obras/'.$project->id ); 
         }else{
             $this->sys_notifications[] = array( 'type' => 'danger', 'message' => 'Não foi possível adicionar a obra!' );             
@@ -88,9 +101,28 @@ class ProjectController extends Controller {
     public function show( $id, Request $request, Validator $validator ) {
         $project = Project::find($id);
 
+        
+        // echo "<pre>";
+        // print_r($project->disciplines->toArray());
+        // echo "</pre>";
+        // echo "<br>";
+
+        // $discipline = ProjectDiscipline::first();
+        // $project->disciplines()->attach( $discipline->id );
+
+        // echo "<pre>";
+        // print_r($project->disciplines->toArray());
+        // echo "</pre>";
+        // echo "<br>";
+
+        // exit;
+
+
+
         if( !$project ){            
             $sys_notifications[] = array( 'type' => 'danger', 'message' => 'A Obra solicitada não existe ou está corrompida.' ); 
-            $request->session()->flash( 'sys_notifications', $sys_notifications );      
+            $request->session()->flash( 'sys_notifications', $sys_notifications );    
+            return redirect( '/obras' );               
         }
 
         $project->load('stages'); // Carrega etapas
@@ -134,7 +166,7 @@ class ProjectController extends Controller {
         if ($validator->fails()) {        
             $this->sys_notifications[] = array( 'type' => 'danger', 'message' => $validator->errors()->first() );   
             $request->session()->flash( 'sys_notifications', $this->sys_notifications );
-            return back()->withInput( $request->all() );
+            return app('Illuminate\Routing\UrlGenerator')->previous()->withInput( $request->all() );            
         }
 
         // UPDATE RESOURCE
@@ -161,13 +193,14 @@ class ProjectController extends Controller {
 
         if( $project->destroy( $id ) ){
             $this->sys_notifications[] = array( 'type' => 'success', 'message' => '<strong><i class="fa fa-check"></i></strong> Obra excluída com sucesso!' );                   
+            $request->session()->flash( 'sys_notifications', $this->sys_notifications );        
+            return redirect( '/obras' );
         }else{
             $this->sys_notifications[] = array( 'type' => 'danger', 'message' => '<strong><i class="fa fa-warning"></i></strong> Não foi possível excluir a obra!' );                
+            $request->session()->flash( 'sys_notifications', $this->sys_notifications );        
+            return back()->withInput( $request->all() );
         }
 
-        $request->session()->flash( 'sys_notifications', $this->sys_notifications );        
-
-        return back()->withInput( $request->all() );
     }
 
 }

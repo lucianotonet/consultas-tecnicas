@@ -2,8 +2,29 @@
     Custom styles
 ----------------------------
 */
+th {
+    background-color: #FAFAFA;
+    color: #283744;
+    padding: 4px 9px !important;
+} 
 
-/* CLIENTES */
-table#clients-list tbody tr:hover {
-    cursor: pointer;
+/* Alerts */
+.alert-group {
+    margin-bottom: 0px;
+}
+.alert-group .alert {
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+    padding: 15px !important;
+}
+.alert-group .alert:nth-child(1) {    
+    border: 1px solid transparent;    
+    border-radius:4px 4px 0 0;
+    padding-top: 15px !important;
+}
+.alert-group .alert:last-child { 
+    border: 1px solid transparent;    
+    border-radius:0 0 4px 4px;
+    padding-bottom: 15px !important;
+    margin-bottom: 20px;
 }

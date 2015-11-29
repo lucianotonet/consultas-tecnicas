@@ -15,9 +15,26 @@ class CreateObrasTable extends Migration {
 			$table->string('status')->nullable();
 			$table->date('date')->nullable();	
 
+			$table->integer('current_stage')->unsigned()->nullable();
 			$table->integer('owner_id')->unsigned()->nullable();		
 			$table->integer('client_id')->unsigned()->nullable();	
 			
+			$table->timestamps();
+		});
+
+		Schema::create('disciplina_obra', function(Blueprint $table) {
+			
+			$table->integer('disciplina_id')->unsigned()->index();
+			$table->integer('obra_id')->unsigned()->index();			
+
+			$table->timestamps();
+		});
+
+		Schema::create('contato_obra', function(Blueprint $table) {
+			
+			$table->integer('contato_id')->unsigned()->index();
+			$table->integer('obra_id')->unsigned()->index();			
+
 			$table->timestamps();
 		});
 				
@@ -26,5 +43,6 @@ class CreateObrasTable extends Migration {
 	public function down()
 	{
 		Schema::drop('obras');
+		Schema::drop('disciplina_obra');
 	}
 }

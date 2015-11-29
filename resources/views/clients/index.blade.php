@@ -5,7 +5,7 @@
 <section class="panel">
 	<header class="panel-heading">
 		<div class="pull-right">
-			<a href="{!! url('/clientes/create') !!}" class="btn btn-default btn-sm btn-xs">
+			<a href="{!! url('/clientes/create') !!}" class="btn btn-success btn-sm btn-xs">
 				<i class="fa fa-plus"></i> Adicionar
 			</a>
 		</div>
@@ -15,7 +15,7 @@
 		<table class="table table-hover" id="clients-list">
 			<thead>
 				<tr>
-					<th>#</th>
+					<th width="40">#</th>
 					<th>Nome</th>
 					<th>Empresa</th>					
 					<th>Obras</th>
@@ -27,10 +27,10 @@
 
 				@foreach ($clients as $client)				
 
-				<tr title="{{ $client->notes }}" onclick="location.href='{{ url('clientes/'.$client->id) }}';">
-					<td>{{	$client->id }}</td>
-					<td><strong>{{	$client->name }}</strong></td>
-					<td>{{	$client->company }}</td>
+				<tr title="{{ $client->notes }}">
+					<td><a href="{{ url('clientes/'.$client->id) }}">{{	$client->id }}</a></td>
+					<td><strong><a href="{{ url('clientes/'.$client->id) }}">{{	$client->name }}</a></strong></td>
+					<td><a href="{{ url('clientes/'.$client->id) }}">{{	$client->company }}</a></td>
 					<td>{{  count( $client->projects ) }}</td>					
 					<td>
 						<div class="pull-right hidden-phone">

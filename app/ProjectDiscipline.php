@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProjectDiscipline extends Model
 {
-	protected $table = 'obras_disciplinas'; //project_stages
+	protected $table = 'disciplinas'; //project_disciplines
 	public $timestamps = true;
-	protected $fillable = array('name', 'project_id', 'description', 'client_id', 'owner_id');
-	protected $visible = array('name', 'project_id', 'description', 'client_id', 'owner_id');
+	protected $fillable = array('title', 'description', 'owner_id');
+	protected $visible = array('title', 'description', 'owner_id');
 
-	public function project()
+	public function projects()
 	{
-		return $this->belongsTo('\Project');
+		return $this->belongsToMany('App\Project', 'disciplina_obra', 'obra_id');
 	}
 
 }

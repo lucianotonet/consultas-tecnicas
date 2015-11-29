@@ -23,14 +23,24 @@ class Project extends Model {
 
 	public function contacts()
 	{
-		return $this->hasMany('App\Contact');
-	}
+		return $this->belongsToMany('App\Contact', 'contato_obra', 'obra_id', 'contato_id');
+	}	
 
 	public function stages()
 	{
-		return $this->hasMany('App\ProjectStage', 'obra_id');
+		return $this->hasMany('App\ProjectStage');
 	}
 
+	public function stage()
+	{
+		return $this->hasOne('App\ProjectStage', 'id', 'current_stage');
+	}
+
+	public function disciplines()
+	{
+		return $this->belongsToMany('App\ProjectDiscipline', 'disciplina_obra', 'obra_id', 'disciplina_id');
+	}
+	
 	function scopeForUser($query, $id)
 	{
 		if( !$id ){

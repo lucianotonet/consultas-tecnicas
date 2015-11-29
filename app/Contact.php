@@ -18,7 +18,7 @@ class Contact extends Model {
 
 	public function projects()
 	{
-		return $this->belongsToMany('\Project');
+		return $this->belongsToMany('\Project', 'disciplina_obra', 'contato_id', 'obra_id');
 	}
 
 	public function getEmailMessages()

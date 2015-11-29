@@ -12,7 +12,7 @@ class CreateUsersTable extends Migration {
 			
 			$table->string('name')->nullable();
 			$table->string('username', 30);
-			$table->string('email', 100);
+			$table->string('email', 100)->unique();
 			$table->string('password', 100);
 			$table->string('salt', 30);
 			$table->string('register_ip', 15);

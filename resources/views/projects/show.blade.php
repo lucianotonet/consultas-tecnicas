@@ -2,6 +2,8 @@
 
 @section('content')
 
+{!! Breadcrumbs::render( 'project', $project )  !!}
+
 <section class="panel">
 	<header class="panel-heading">
 		<div class="pull-right">
@@ -14,47 +16,52 @@
 		</div>
 		Obra <strong>{!! $project->title !!}</strong>
 	</header>
-	<div class="panel-body">
-		
-		<div class="">			  
-			{!! Form::open(array('url' => 'obras/'.$project->id, 'class'=>"form-horizontal", 'method'=>'PATCH' )) !!}
-				<div class="form-group">
-					<label for="inputName" class="col-lg-2 col-sm-2 control-label">Título</label>
-					<div class="col-lg-10">
-						<p class="form-control-static h4">{!! $project->title !!}</p>
-					</div>
+	<div class="panel-body">		
+		<div class="well well-xs form-horizontal">
+			<div class="row">			  
+				<div class="col-sm-6">
+					{!! Form::open(array('url' => 'obras/'.$project->id, 'class'=>"form-horizontal", 'method'=>'PATCH', 'role'=>'form',  )) !!}
+						<div class="form-group">
+							<label for="inputName" class="col-lg-2 col-sm-2 control-label">Nome</label>
+							<div class="col-lg-10">
+								<p class="form-control-static h4">{!! $project->title !!}
+									<br>					
+									<small>Etapa atual: {{ $project->stage->name or '' }}</small>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail" class="col-lg-2 col-sm-2 control-label">Cliente</label>
+							<div class="col-lg-10">
+								<p class="form-control-static h4">{!! $project->client->name !!}
+									<br>
+									<small>Empresa: {!! $project->client->company !!}</small>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputNotes" class="col-lg-2 col-sm-2 control-label">Descrição</label>
+							<div class="col-lg-10">
+								<p class="form-control-static">{!!  $project->description !!}</p>
+							</div>
+						</div>	
+					{!! Form::close() !!}  
 				</div>
-				<div class="form-group">
-					<label for="inputEmail" class="col-lg-2 col-sm-2 control-label">Cliente</label>
-					<div class="col-lg-10">
-						<p class="form-control-static">{!! $project->client->name !!}</p>
-					</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="inputPhones" class="col-lg-2 col-sm-2 control-label">Data</label>
+						<div class="col-lg-10">
+							<p class="form-control-static">{!! $project->created_at !!}</p>
+						</div>
+					</div>	
+					<div class="form-group">
+						<label for="inputAddress" class="col-lg-2 col-sm-2 control-label"><small>Última atualização</small></label>
+						<div class="col-lg-10">
+							<p class="form-control-static">{!! $project->updated_at !!}</p>
+						</div>
+					</div>	
 				</div>
-				<div class="form-group">
-					<label for="inputCompany" class="col-lg-2 col-sm-2 control-label">Empresa</label>
-					<div class="col-lg-10">
-						<p class="form-control-static">{!! $project->client->company !!}</p>
-					</div>
-				</div>	
-				<div class="form-group">
-					<label for="inputNotes" class="col-lg-2 col-sm-2 control-label">Descrição</label>
-					<div class="col-lg-10">
-						<p class="form-control-static">{!!  $project->description !!}</p>
-					</div>
-				</div>	
-				<div class="form-group">
-					<label for="inputPhones" class="col-lg-2 col-sm-2 control-label">Data</label>
-					<div class="col-lg-10">
-						<p class="form-control-static">{!! $project->created_at !!}</p>
-					</div>
-				</div>	
-				<div class="form-group">
-					<label for="inputAddress" class="col-lg-2 col-sm-2 control-label"><small>Última atualização</small></label>
-					<div class="col-lg-10">
-						<p class="form-control-static">{!! $project->updated_at !!}</p>
-					</div>
-				</div>	
-			{!! Form::close() !!}  
+			</div>
 		</div>
 
 		<div role="tabpanel">
@@ -77,29 +84,43 @@
 		    <!-- Tab panes -->
 		    <div class="tab-content">
 		        <div role="tabpanel" class="tab-pane active" id="tab-1">
-					<div>
+					<div class="navbar">
 			        	<div class="navbar-right">
-			        		<a href="{!! url('obras/'.$project->id.'/etapas/create') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>		        		        			
-                			<a href="{!! url('obras/'.$project->id.'/etapas/create') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>		        		        			
+			        		
+                			<a href="{!! url('obras/'.$project->id.'/etapas/create') !!}" class="btn btn-success btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>		        		        			
 	        			</div>        			
 			        	<p class="navbar-text navbar-left">
-		        			Text
+		        			
 			        	</p>	
-		        	</div>
+		        	</div>					
 					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Título</th>
+								<th>Consultas Técnicas</th>
+								<th></th>
+							</tr>
+						</thead>
 						<tbody>
 							@foreach ($project->stages as $stage)
 								<tr>
-									<td>{!! $stage->name !!}</td>
+									<td width="15" class="text-right">
+										@if ( $stage->id == $project->current_stage )
+											<i class="fa fa-chevron-right text-success"></i> 
+										@endif
+									</td>
+									<td>										
+										{!! $stage->name !!}  
+									</td>
+									<td>
+										{!! count( $stage->tecnhical_consults ) !!}
+									</td>
 									<td>
 										<div class="pull-right hidden-phone">
-								            {!! Form::open(array('url' => 'obras/'.$stage->id , 'method'  => 'delete' )) !!}	                        	
-								                <a href="#" class="btn btn-default btn-xs"><i class="fa fa-check"></i></a>
-								            	<a href="{{ url('obras/'.$stage->id.'/edit') }}" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
-												<a href="mailto:{!!	$stage->email !!}" class="btn btn-default btn-xs" title="Enviar e-mail para {!! $project->name !!}">
-													<i class="fa fa-envelope"></i>
-												</a>
-								                <button class="btn btn-default btn-xs" type="submit" onclick="return confirm('Excluir permanentemente esta obra?');"><i class="fa fa-times"></i></button>
+								            {!! Form::open(array('url' => 'obras/'.$project->id.'/etapas/'.$stage->id , 'method'  => 'delete' )) !!}	                        			
+								            	<a href="{{ url('obras/'.$project->id.'/etapas/'.$stage->id.'/edit') }}" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+								                <button class="btn btn-default btn-xs" type="submit" onclick="return confirm('Excluir permanentemente esta etapa?');"><i class="fa fa-times"></i></button>
 								            {!! Form::close() !!}
 								     	</div>
 									</td>
@@ -109,37 +130,43 @@
 					</table>
 		        </div>
 		        <div role="tabpanel" class="tab-pane" id="tab-2">
-		        	<div>
+		        	<div class="navbar">
 			        	<div class="navbar-right">	        		        			
-		                	<a href="{!! url('obras/'.$project->id.'/disciplinas/create') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>
+		                	<a href="{!! url('obras/'.$project->id.'/disciplinas/create') !!}" class="btn btn-success btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>
 	        			</div>        			
 			        	<p class="navbar-text navbar-left">
-		        			Text
+		        			
 			        	</p>	
 		        	</div>
-		        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, ipsum odit. Expedita aspernatur est, velit, non maxime, ex consequuntur temporibus dolorem itaque blanditiis accusantium esse sint reprehenderit delectus! Laborum, assumenda.
+		        	<div class="">
+		        		<pre><?php print_r($project->disciplines->toArray() ); ?></pre>
+		        	</div>
 		        </div>
 		        <div role="tabpanel" class="tab-pane" id="tab-3">
-		        	<div>
+		        	<div class="navbar">
 			        	<div class="navbar-right">	    
-		                	<a href="{!! url('obras/'.$project->id.'/contatos/add') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> Adicionar</a>
+		                	<a href="{!! url('obras/'.$project->id.'/contatos/add') !!}" class="btn btn-success btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>
 			     		</div>        			
 			        	<p class="navbar-text navbar-left">
-		        			Text
+		        			
 			        	</p>	
 		        	</div>
-		        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat ipsum doloremque aut recusandae sunt iste inventore consectetur vitae, culpa ullam dolorem aliquid natus, error repellendus minima facere, optio assumenda dolor!
+		        	<div class="">
+		        		<pre></pre>
+		        	</div>
 		        </div>
 		        <div role="tabpanel" class="tab-pane" id="tab-4">
-		       		<div>
+		       		<div class="navbar">
 			        	<div class="navbar-right">	    
-		                	<a href="{!! url('obras/'.$project->id.'/consultas-tecnicas/create') !!}" class="btn btn-default btn-xs navbar-btn"><i class="fa fa-plus"></i> Adicionar</a>
+		                	<a href="{!! url('obras/'.$project->id.'/consultas_tecnicas/create') !!}" class="btn btn-success btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>
 		     			</div>        			
 			        	<p class="navbar-text navbar-left">
-		        			Text
+		        			
 			        	</p>	
 		        	</div>
-		        	Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus non, laborum quae molestiae, facere consequuntur, inventore aut aliquid doloremque excepturi labore id eos vitae quos repudiandae autem amet nulla! Odio!
+		        	<div class="">
+		        		<pre></pre>
+		        	</div>
 		        </div>
 
 		    </div>

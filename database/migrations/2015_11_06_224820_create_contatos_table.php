@@ -18,7 +18,7 @@ class CreateContatosTable extends Migration {
 			$table->integer('client_id')->unsigned()->nullable();			
 			$table->text('notes');
 			$table->timestamps();
-		});
+		});		
 	}
 
 	public function down()
