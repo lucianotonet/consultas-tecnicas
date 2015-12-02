@@ -1970,7 +1970,8 @@ content: '';
 }
 
 .timeline-heading {
-  padding:8px 15px;
+  padding: 15px;    
+  margin-bottom: 0px;
 }
 .timeline-messages .msg-in  .arrow {
     /*border-right: 8px solid #F4F4F4 !important;*/

@@ -12,8 +12,7 @@ class TechnicalConsultController extends Controller {
 	 * @return Response
 	 */
 	public function index( Request $request ) {
-		$consults 	= TechnicalConsult::orderBy( $request->input('order', 'id'), $request->input('orderby', 'DESC'))->paginate( $request->input('paginate', 50) );  	   	
-
+		$consults 	= TechnicalConsult::orderBy( $request->input('order', 'id'), $request->input('orderby', 'DESC'))->paginate( $request->input('paginate', 50) );  	   			
 	   	return view('technical_consults.index')->with('consults', $consults);
 	}
 

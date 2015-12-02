@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder {
 				$disciplines = array();
 				foreach(range(1,4) as $index_discipline)
 				{
-					$items = ['Estrutura','Fachada', 'Cobertura', 'Acabamento'];
+					$items = ['Estrutura Metálica', 'Concreto', 'Instalações de Ar Condicionado', 'Segurança'];
 					$disciplines[] = ProjectDiscipline::create([							
 						'title'   		=> $items[$index_discipline-1],							
 						'description'   => $faker->sentence($nbWords = 6),            
@@ -89,7 +89,7 @@ class DatabaseSeeder extends Seeder {
 						/* PROJECT STAGES */
 						foreach(range(1,4) as $index_stage)
 						{
-							$items = ['Geral','Início', 'Meio', 'Fim'];
+							$items = ['Geral','1A', '1B', '2A'];
 							$projectstage = ProjectStage::create([            
 								'name'   		=> $index_stage . ' ' . $items[$index_stage-1],
 								'project_id'   	=> $project->id,

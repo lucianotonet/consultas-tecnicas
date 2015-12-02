@@ -17,57 +17,15 @@
 		Obra <strong>{!! $project->title !!}</strong>
 	</header>
 	<div class="panel-body">		
-		<div class="well well-xs form-horizontal">
-			<div class="row">			  
-				<div class="col-sm-6">
-					{!! Form::open(array('url' => 'obras/'.$project->id, 'class'=>"form-horizontal", 'method'=>'PATCH', 'role'=>'form',  )) !!}
-						<div class="form-group">
-							<label for="inputName" class="col-lg-2 col-sm-2 control-label">Nome</label>
-							<div class="col-lg-10">
-								<p class="form-control-static h4">{!! $project->title !!}
-									<br>					
-									<small>Etapa atual: {{ $project->stage->name or '' }}</small>
-								</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputEmail" class="col-lg-2 col-sm-2 control-label">Cliente</label>
-							<div class="col-lg-10">
-								<p class="form-control-static h4">{!! $project->client->name !!}
-									<br>
-									<small>Empresa: {!! $project->client->company !!}</small>
-								</p>
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputNotes" class="col-lg-2 col-sm-2 control-label">Descrição</label>
-							<div class="col-lg-10">
-								<p class="form-control-static">{!!  $project->description !!}</p>
-							</div>
-						</div>	
-					{!! Form::close() !!}  
-				</div>
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label for="inputPhones" class="col-lg-2 col-sm-2 control-label">Data</label>
-						<div class="col-lg-10">
-							<p class="form-control-static">{!! $project->created_at !!}</p>
-						</div>
-					</div>	
-					<div class="form-group">
-						<label for="inputAddress" class="col-lg-2 col-sm-2 control-label"><small>Última atualização</small></label>
-						<div class="col-lg-10">
-							<p class="form-control-static">{!! $project->updated_at !!}</p>
-						</div>
-					</div>	
-				</div>
-			</div>
-		</div>
+		
 
 		<div role="tabpanel">
 		    <!-- Nav tabs -->
 		    <ul class="nav nav-tabs" role="tablist">
-		        <li role="presentation" class="active">
+		    	<li role="presentation" class="active">
+		            <a href="#tab-0" aria-controls="tab-0" role="tab" data-toggle="tab">Resumo</a>
+		        </li>
+		        <li role="presentation" class="">
 		            <a href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab">Etapas</a>
 		        </li>
 		        <li role="presentation">
@@ -83,7 +41,57 @@
 		
 		    <!-- Tab panes -->
 		    <div class="tab-content">
-		        <div role="tabpanel" class="tab-pane active" id="tab-1">
+		    	<div role="tabpanel" class="tab-pane active" id="tab-0">		       		
+		        	<div class="">
+		        		<div class="well well-xs form-horizontal">
+							<div class="row">			  
+								<div class="col-sm-6">
+									{!! Form::open(array('url' => 'obras/'.$project->id, 'class'=>"form-horizontal", 'method'=>'PATCH', 'role'=>'form',  )) !!}
+										<div class="form-group">
+											<label for="inputName" class="col-lg-2 col-sm-2 control-label">Nome</label>
+											<div class="col-lg-10">
+												<p class="form-control-static h4">{!! $project->title !!}
+													<br>					
+													<small>Etapa atual: {{ $project->stage->name or '' }}</small>
+												</p>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="inputEmail" class="col-lg-2 col-sm-2 control-label">Cliente</label>
+											<div class="col-lg-10">
+												<p class="form-control-static h4">{!! $project->client->name !!}
+													<br>
+													<small>Empresa: {!! $project->client->company !!}</small>
+												</p>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="inputNotes" class="col-lg-2 col-sm-2 control-label">Descrição</label>
+											<div class="col-lg-10">
+												<p class="form-control-static">{!!  $project->description !!}</p>
+											</div>
+										</div>	
+									{!! Form::close() !!}  
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="inputPhones" class="col-lg-2 col-sm-2 control-label">Data</label>
+										<div class="col-lg-10">
+											<p class="form-control-static">{!! $project->created_at !!}</p>
+										</div>
+									</div>	
+									<div class="form-group">
+										<label for="inputAddress" class="col-lg-2 col-sm-2 control-label"><small>Última atualização</small></label>
+										<div class="col-lg-10">
+											<p class="form-control-static">{!! $project->updated_at !!}</p>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+		        	</div>
+		        </div>
+		        <div role="tabpanel" class="tab-pane" id="tab-1">
 					<div class="navbar">
 			        	<div class="navbar-right">
 			        		
@@ -165,9 +173,10 @@
 			        	</p>	
 		        	</div>
 		        	<div class="">
-		        		<pre></pre>
+		        		@include('technical_consults.index_timeline')
 		        	</div>
 		        </div>
+				
 
 		    </div>
 		</div>

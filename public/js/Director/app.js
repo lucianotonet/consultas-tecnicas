@@ -72,6 +72,16 @@ $(function() {
         size: "3px"
     }).css("width", "100%");
 
+     /*
+     * ADD SLIMSCROLL TO THE TIMELINE
+     * ---------------------------------------
+     */
+    $(".timeline").slimscroll({
+        height: ($(window).height() - $(".header").height()) + "px",
+        alwaysVisible: false,
+        size: "3px"
+    }).css("width", "100%");
+
     /*
      * INITIALIZE BUTTON TOGGLE
      * ------------------------
@@ -150,6 +160,7 @@ function fix_sidebar() {
         height: ($(window).height() - $(".header").height()) + "px",
         color: "rgba(0,0,0,0.2)"
     });
+
 }
 
 /*END DEMO*/

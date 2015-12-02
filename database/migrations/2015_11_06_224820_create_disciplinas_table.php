@@ -15,7 +15,7 @@ class CreateDisciplinasTable extends Migration
         Schema::create('disciplinas', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('title')->nullable()->index()->unique();
+            $table->string('title')->nullable()->index();
             $table->text('description')->nullable();
             $table->integer('owner_id')->unsigned()->nullable();
 
