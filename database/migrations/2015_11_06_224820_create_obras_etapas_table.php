@@ -9,10 +9,10 @@ class CreateObrasEtapasTable extends Migration {
 	{
 		Schema::create('obras_etapas', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name')->nullable();
-			$table->integer('project_id')->unsigned()->nullable();		
-			$table->boolean('completed')->nullable();
-			$table->text('description')->nullable();			
+			$table->string('title')->nullable();			
+			$table->text('description')->nullable();
+			$table->string('status')->nullable();
+			$table->integer('project_id')->unsigned();
 			$table->integer('owner_id')->unsigned()->nullable();	
 			$table->timestamps();
 		});

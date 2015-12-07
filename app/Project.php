@@ -28,12 +28,7 @@ class Project extends Model {
 
 	public function stages()
 	{
-		return $this->hasMany('App\ProjectStage');
-	}
-
-	public function stage()
-	{
-		return $this->hasOne('App\ProjectStage', 'id', 'current_stage');
+		return $this->hasMany('App\ProjectStage', 'project_id');
 	}
 
 	public function disciplines()

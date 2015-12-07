@@ -57,7 +57,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::resource('consultas_tecnicas', 'TechnicalConsultController');
 	Route::resource('consultas_tecnicas/status', 'TechnicalConsultStatusController');
-	Route::resource('consultas_tecnicas/tipos', 'TechnicalConsultTypeController');	
+	Route::resource('consultas_tecnicas/tipos', 'TechnicalConsultTypeController');
+	Route::get('consultas_tecnicas/{consulta_tecnica_id}/emails', 'TechnicalConsultController@getEmails');
 	
 
 	Route::resource('obras/{obra_id}/etapas/{etapa_id}/consultas_tecnicas', 'TechnicalConsultController');
@@ -73,6 +74,12 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::group(['prefix' => 'obras/{obra_id}'], function () {
 			Route::resource('etapas', 'ProjectStageController');
 		});
+	});
+
+	Route::group(['prefix' => 'api'], function () {
+		
+		Route::get('/{resource_name?}/{resource_id?}/{resource_relationship?}/{related_resource_id?}/{related_related_resource?}', 'ApiController@index');	
+		
 	});
 	
 });

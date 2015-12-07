@@ -12,8 +12,32 @@ class TechnicalConsultController extends Controller {
 	 * @return Response
 	 */
 	public function index( Request $request ) {
-		$consults 	= TechnicalConsult::orderBy( $request->input('order', 'id'), $request->input('orderby', 'DESC'))->paginate( $request->input('paginate', 50) );  	   			
-	   	return view('technical_consults.index')->with('consults', $consults);
+		
+		$consults 	= TechnicalConsult::orderBy( $request->input('order', 'id'), $request->input('orderby', 'DESC'))
+										->where('owner_id', $request->user()->id)
+										->with('emails')		                                
+		                                ->simplePaginate( $request->input('paginate', 5) )
+		                                ->items(); 
+     	if( $request->ajax() ){
+			return $consults;
+     	}else{
+	   		return view('technical_consults.index')->with('consults', $consults);
+     	}
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function getEmails( Request $request, $id ) {
+		
+		$consult = TechnicalConsult::find( $id ); 
+		$emails = $consult->emails;		
+
+     	if( $request->ajax() ){     		
+			return $emails;
+     	}
 	}
 
 	/**

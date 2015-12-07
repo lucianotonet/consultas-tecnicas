@@ -8,12 +8,12 @@ class ProjectStage extends Model {
 
 	protected $table = 'obras_etapas'; //project_stages
 	public $timestamps = true;
-	protected $fillable = array('name', 'project_id', 'description', 'owner_id');
-	protected $visible = array('name', 'project_id', 'description', 'owner_id');
+	protected $fillable = array( 'title', 'project_id', 'description', 'status', 'owner_id' );
+	protected $visible = array( 'id', 'title', 'project_id', 'description', 'status', 'owner_id' );
 
-	public function tecnhical_consults()
+	public function technical_consults()
 	{
-		return $this->hasMany('App\TechnicalConsult');
+		return $this->hasMany('App\TechnicalConsult', 'project_stage_id');
 	}
 
 	public function project()

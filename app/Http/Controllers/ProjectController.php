@@ -101,24 +101,6 @@ class ProjectController extends Controller {
     public function show( $id, Request $request, Validator $validator ) {
         $project = Project::find($id);
 
-        
-        // echo "<pre>";
-        // print_r($project->disciplines->toArray());
-        // echo "</pre>";
-        // echo "<br>";
-
-        // $discipline = ProjectDiscipline::first();
-        // $project->disciplines()->attach( $discipline->id );
-
-        // echo "<pre>";
-        // print_r($project->disciplines->toArray());
-        // echo "</pre>";
-        // echo "<br>";
-
-        // exit;
-
-
-
         if( !$project ){            
             $sys_notifications[] = array( 'type' => 'danger', 'message' => 'A Obra solicitada não existe ou está corrompida.' ); 
             $request->session()->flash( 'sys_notifications', $sys_notifications );    

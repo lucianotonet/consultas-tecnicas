@@ -14,8 +14,6 @@ class CreateObrasTable extends Migration {
 			$table->text('description')->nullable();
 			$table->string('status')->nullable();
 			$table->date('date')->nullable();	
-
-			$table->integer('current_stage')->unsigned()->nullable();
 			$table->integer('owner_id')->unsigned()->nullable();		
 			$table->integer('client_id')->unsigned()->nullable();	
 			
@@ -44,5 +42,6 @@ class CreateObrasTable extends Migration {
 	{
 		Schema::drop('obras');
 		Schema::drop('disciplina_obra');
+		Schema::drop('contato_obra');
 	}
 }

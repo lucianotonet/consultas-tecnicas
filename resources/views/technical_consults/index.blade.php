@@ -30,52 +30,12 @@
     <div class="panel-body">
 
         
+        @include('technical_consults.index_timeline_angular')
 
-
-        @include('technical_consults.index_timeline')
-
-
+        {{-- @include('technical_consults.index_timeline') --}}
 
 
 
-        <div class="row" style="margin-bottom:5px;">
-            <div class="col-md-3">
-                <div class="sm-st clearfix bg-primary">
-                    <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
-                    <div class="sm-st-info">
-                        <span>32</span>
-                        Em aberto
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="sm-st clearfix bg-primary">
-                    <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
-                    <div class="sm-st-info">
-                        <span>2</span>
-                        Aguardando resposta
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="sm-st clearfix bg-primary">
-                    <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
-                    <div class="sm-st-info">
-                        <span>10</span>
-                        Total Profit
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="sm-st clearfix bg-primary">
-                    <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
-                    <div class="sm-st-info">
-                        <span>4567</span>
-                        Total Documents
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </section>
 @stop

@@ -44,7 +44,7 @@
 
   </style>
 </head>
-<body class="skin-black">
+<body class="skin-black" ng-app="myApp">
     <!-- header logo: style can be found in header.less -->
     <header class="header">
         <a href="{{ url('/') }}" class="logo">
@@ -292,6 +292,12 @@
 
                 <script src="{{ asset('js/plugins/chart.js') }}" type="text/javascript"></script>
 
+                <!-- ANGULARJS -->
+                <script src="{{ asset('js/angular.min.js') }}"></script>
+
+                <!-- ANGULAR RESOURCE-->
+                <script src="{{ asset('js/bower_components/angular-resource/angular-resource.min.js') }}"></script>
+
 <!-- datepicker
     <script src="{{ asset('js/plugins/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>-->
 <!-- Bootstrap WYSIHTML5
@@ -300,12 +306,19 @@
     <script src="{{ asset('js/plugins/iCheck/icheck.min.js') }}" type="text/javascript"></script>
     <!-- calendar -->
     <script src="{{ asset('js/plugins/fullcalendar/fullcalendar.js') }}" type="text/javascript"></script>
+    <!-- timago -->
+    <script src="{{ asset('js/plugins/timeago/jquery.timeago.js') }}" type="text/javascript"></script>
+    <!-- ng-infinite-scroll -->
+    <script src="{{ asset('js/plugins/ng-infinite-scroll/ng-infinite-scroll.min.js') }}" type="text/javascript"></script>
 
     <!-- Director App -->
     <script src="{{ asset('js/Director/app.js') }}" type="text/javascript"></script>
 
     <!-- Director dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('js/Director/dashboard.js') }}" type="text/javascript"></script>
+
+    <!-- MAIN JS -->
+    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
 
     <!-- Director for demo purposes -->
     <script type="text/javascript">
@@ -364,13 +377,10 @@
             }
             ]
         };
-        new Chart(document.getElementById("linechart").getContext("2d")).Line(data,{
-            responsive : true,
-            maintainAspectRatio: false,
-        });
+       
 
     });
     // Chart.defaults.global.responsive = true;
-    </script>
+    </script>   
 </body>
 </html>

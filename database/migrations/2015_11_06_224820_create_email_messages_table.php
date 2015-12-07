@@ -15,7 +15,7 @@ class CreateEmailMessagesTable extends Migration {
 			$table->text('body_text')->nullable();
 			$table->string('body_html')->nullable();
 			$table->text('headers');			
-			$table->integer('technical_consult_id')->nullable()->unsigned();
+			$table->integer('consulta_tecnica_id')->nullable()->unsigned();
 			$table->integer('owner_id')->unsigned()->nullable();
 			$table->timestamps();
 		});

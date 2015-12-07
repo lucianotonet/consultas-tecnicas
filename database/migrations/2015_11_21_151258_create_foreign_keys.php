@@ -28,7 +28,7 @@ class CreateForeignKeys extends Migration {
 						->onUpdate('cascade');
 		});
 		Schema::table('email_messages', function(Blueprint $table) {						
-			$table->foreign('technical_consult_id')->references('id')->on('consultas_tecnicas')
+			$table->foreign('consulta_tecnica_id')->references('id')->on('consultas_tecnicas')
 						->onDelete('cascade')
 						->onUpdate('cascade');		
 			$table->foreign('owner_id')->references('id')->on('users')
@@ -36,8 +36,6 @@ class CreateForeignKeys extends Migration {
 						->onUpdate('cascade');
 		});
 		Schema::table('obras', function(Blueprint $table) {					
-			$table->foreign('current_stage')->references('id')->on('obras_etapas')
-						->onDelete('set null');				
 			$table->foreign('owner_id')->references('id')->on('users')
 						->onDelete('set null')
 						->onUpdate('cascade');		
@@ -83,11 +81,10 @@ class CreateForeignKeys extends Migration {
 			$table->dropForeign('contatos_client_id_foreign');						
 		});
 		Schema::table('email_messages', function(Blueprint $table) {
-			$table->dropForeign('email_messages_technical_consult_id_foreign');										
+			$table->dropForeign('email_messages_consulta_tecnica_id_foreign');										
 			$table->dropForeign('email_messages_owner_id_foreign');				
 		});
-		Schema::table('obras', function(Blueprint $table) {				
-			$table->dropForeign('obras_current_stage_foreign');
+		Schema::table('obras', function(Blueprint $table) {							
 			$table->dropForeign('obras_owner_id_foreign');															
 			$table->dropForeign('obras_client_id_foreign');	
 		});
