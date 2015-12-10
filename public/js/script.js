@@ -1,14 +1,15 @@
 (function() {
     
-    var myApp = angular.module('myApp', ['infinite-scroll']);
+    var mainApp = angular.module('mainApp', ['infinite-scroll']);
+
     
-    myApp.controller('TechnicalConsultsController', function($scope, TechnicalConsults){
+    mainApp.controller('TechnicalConsultsController', function($scope, TechnicalConsults){
         $scope.TechnicalConsults = new TechnicalConsults();
     }).config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     }]);
 
-    myApp.factory('TechnicalConsults', function($http){        
+    mainApp.factory('TechnicalConsults', function($http){        
 
         var TechnicalConsults = function () {
             this.items = [];
@@ -55,66 +56,52 @@
 
     'use strict';
 
-    angular
-        .module('myApp', [
-            'ngResource'
-        ])
-        .controller('ProjectStagesController', ProjectStages)
+    angular        
+        .module('mainApp', ['ContactController', 'ContactService'])        
+        .controller('ProjectStagesController', ProjectStagesController)
         .config(['$httpProvider', function($httpProvider) {
             $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
-        }],
-        ['$resourceProvider', function($resourceProvider) {
-          // Don't strip trailing slashes from calculated URLs
-          $resourceProvider.defaults.stripTrailingSlashes = false;
         }]);
 
-        function ProjectStages( $scope, $http, $resource ) {
+    function ProjectStagesController( $scope, $http ) {
 
-            $scope.ProjectStages = this;
+        $scope.ProjectStagesController = this;
 
-            this.items  = [];
-            this.busy   = false;      
-            this.page   = 1;
+        this.items  = [];
+        this.busy   = false;      
+        this.page   = 1;
 
-            function tranlsate( word ) {                
-                word = word.replace("#", "/");
-                word = word.replace("obras", "projects");
-                word = word.replace("clientes", "clients");
-                word = word.replace("contatos", "contacts");
-                word = word.replace("consultas-tecnicas", "technical_consults");
-                word = word.replace("etapas", "stages");
-                word = word.replace("dicsiplinas", "disciplines");
-                return word;       
-            }
+        function tranlsate( word ) {                
+            word = word.replace("#", "/");
+            word = word.replace("obras", "projects");
+            word = word.replace("clientes", "clients");
+            word = word.replace("contatos", "contacts");
+            word = word.replace("consultas-tecnicas", "technical_consults");
+            word = word.replace("etapas", "stages");
+            word = word.replace("dicsiplinas", "disciplines");
+            return word;
+        }
 
-            var pathname    = tranlsate( window.location.pathname );
-            var hash        = tranlsate( window.location.hash );
-            var url         = window.location.protocol + '//' + window.location.hostname + '/api' + pathname + hash;
+        var pathname    = tranlsate( window.location.pathname );
+        var hash        = tranlsate( window.location.hash );
+        var url         = window.location.protocol + '//' + window.location.hostname + '/api' + pathname + hash;
 
-            $http.get( url )
-                .success(function(response){
+        $http.get( url )
+            .success(function(response){
+               
+                for (var i = 0; i < response.length; i++) { 
+                    var item = response[i];
+                    $http.get( url + '/' + response[i].id + '/technical_consults' )
+                        .success(function( response_tc ){
+                            item.technical_consults = response_tc;
+                            console.log( response_tc );
+                        });
+                    this.items.push( item );
+                };
 
-                   
-                    for (var i = 0; i < response.length; i++) { 
+            }.bind(this));
+    };
 
-                        var item = response[i];
-
-                        $http.get( url + '/' + response[i].id + '/technical_consults' )
-                            .success(function( response_tc ){
-                                item.technical_consults = response_tc;
-
-                                console.log( response_tc );
-                            });
-
-                    
-                        this.items.push( item );
-
-                    };
-                
-                }.bind(this));
-
-        };
-    
 })();
 
 
@@ -169,4 +156,11 @@
     };
 }( jQuery ));
 
-$('.nav.nav-tabs').stickyTabs();
+
+(function() {
+    
+    $('.nav.nav-tabs').stickyTabs();
+
+    $('.selectpicker').selectpicker();
+
+}( jQuery ));

@@ -2528,18 +2528,18 @@ content: '';
 }
 .alert > .fa,
 .alert > .glyphicon {
-  position: absolute;
-  left: -15px;
-  top: -15px;
-  width: 35px;
-  height: 35px;
-  -webkit-border-radius: 50%;
+  /* position: absolute; */
+  /* left: -15px; */
+  /* top: -15px; */
+  /* width: 35px; */
+  /* height: 35px; */
+  /* -webkit-border-radius: 50%; */
   -moz-border-radius: 50%;
-  border-radius: 50%;
-  line-height: 35px;
-  text-align: center;
-  background: inherit;
-  border: inherit;
+  /* border-radius: 50%; */
+  /* line-height: 35px; */
+  /* text-align: center; */
+  /* background: inherit; */
+  /* border: inherit; */
 }
 /*
     Component: Navs

@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Client;
+use App\Contact;
 use App\Project;
 use App\ProjectStage;
 use App\ProjectDiscipline;
@@ -106,6 +107,13 @@ class ProjectController extends Controller {
             $request->session()->flash( 'sys_notifications', $sys_notifications );    
             return redirect( '/obras' );               
         }
+
+        // $contact = Contact::first();
+
+        // $project->contacts()->attach( $contact->id );\
+
+        // return $contact;
+
 
         $project->load('stages'); // Carrega etapas
         return view( 'projects.show' )->with( 'project', $project );

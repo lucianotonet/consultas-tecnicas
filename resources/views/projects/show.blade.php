@@ -59,10 +59,7 @@
 										<div class="form-group">
 											<label for="inputName" class="col-lg-2 col-sm-2 control-label">Nome</label>
 											<div class="col-lg-10">
-												<p class="form-control-static h4">{!! $project->title !!}
-													<br>					
-													<small>Etapa atual: {{ $project->stage->name or '' }}</small>
-												</p>
+												<p class="form-control-static h4">{!! $project->title !!}</p>
 											</div>
 										</div>
 										<div class="form-group">
@@ -120,7 +117,7 @@
 						</thead>
 						<tbody>
 							
-							<tr ng-repeat="ProjectStage in ProjectStages.items">								
+							<tr ng-repeat="ProjectStage in ProjectStages.items">							
 								<td>@{{ ProjectStage.title }}</td>
 								<td>									
 									@{{ ProjectStage.description }}
@@ -151,17 +148,76 @@
 		        		<pre><?php print_r($project->disciplines->toArray() ); ?></pre>
 		        	</div>
 		        </div>
-		        <div role="tabpanel" class="tab-pane" id="contatos">
+		        <div role="tabpanel" class="tab-pane" id="contatos" ng-controller="ContactController">
 		        	<div class="navbar">
 			        	<div class="navbar-right">	    
 		                	<a href="{!! url('obras/'.$project->id.'/contatos/add') !!}" class="btn btn-success btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>
+		        			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+							  	Button with data-target
+							</button>
 			     		</div>        			
-			        	<p class="navbar-text navbar-left">
-		        			
-			        	</p>	
+			        	<div class="navbar-text navbar-left">
+					
+			        	</div>
 		        	</div>
-		        	<div class="">
-		        		<pre></pre>
+		        	<div class="collapse" id="collapseExample">
+			        	<form action="" method="POST" role="form" class="form-inline well well-sm">
+								
+							<div class="form-group">
+								<label class="sr-only" for="">label</label>
+								<input type="email" class="form-control" id="" placeholder="Input field">
+							</div>
+							<div class="form-group">
+								<label for="input" class="col-sm-2 control-label">:</label>
+								<select class="selectpicker">									
+								    <option data-content="<span class='label label-success'>Relish</span>">Relish</option>
+								    <option data-content="<span class='label label-success'>Relish</span>">Relish</option>
+								</select>
+							</div>
+													
+							<button type="submit" class="btn btn-primary">Submit</button>
+
+						</form>		        		
+		        	</div>
+		        	<div class="" >
+
+						<!-- LOADING ICON =============================================== -->
+					    <!-- show loading icon if the loading variable is set to true -->
+					    <p class="text-center" ng-show="loading"><span class="text-muted fa fa-spinner fa-2x fa-spin"></span></p>	
+
+						<table class="table table-hover" id="contacts-list" ng-if="contacts.length">
+							<thead>
+								<tr>
+									<th width="40">#</th>
+									<th>Nome</th>
+									<th>Empresa</th>					
+									<th>Obras</th>
+									<!-- <th>Price</th> -->					
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+									
+								<tr title="" ng-repeat="contact in contacts">
+									<td><a href="">@{{ contact.id }}</a></td>
+									<td><strong><a href="http://system3d.com.br/clientes/@{{ contact.id }}">@{{ contact.name }}</a></strong></td>
+									<td><a href="http://system3d.com.br/clientes/@{{ contact.id }}">@{{ contact.company }}</a></td>
+									<td>3</td>					
+									<td>
+										<div class="pull-right hidden-phone">
+					                    	<a href="http://system3d.com.br/clientes/1/edit" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></a>
+					                        <button  ng-click="detachContact(contact.id)" class="btn btn-default btn-xs" type="submit" onclick="return confirm('Desvincular este contato desta obra?');"><i class="fa fa-times"></i></button>
+						             	</div>
+									</td>
+								</tr>								
+							</tbody>
+						</table>
+
+						<div ng-if="contacts.length===0" class="alert alert-warning text-center">
+						 	<span class="fa fa-warning"></span> 
+						 	Nenhum contato vinculado à esta obra.
+						</div>
+
 		        	</div>
 		        </div>
 		        <div role="tabpanel" class="tab-pane" id="consultas-tecnicas">

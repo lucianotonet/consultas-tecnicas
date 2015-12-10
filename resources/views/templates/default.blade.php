@@ -27,6 +27,12 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <!-- <link href="{{ asset('css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css" /> -->
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+    
+    <!-- Bootstrap Select -->
+    <link href="{{ asset('css/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css" />
+
+
     <!-- Theme style -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
@@ -44,7 +50,7 @@
 
   </style>
 </head>
-<body class="skin-black" ng-app="myApp">
+<body class="skin-black" ng-app="mainApp">
     <!-- header logo: style can be found in header.less -->
     <header class="header">
         <a href="{{ url('/') }}" class="logo">
@@ -295,12 +301,12 @@
                 <!-- ANGULARJS -->
                 <script src="{{ asset('js/angular.min.js') }}"></script>
 
-                <!-- ANGULAR RESOURCE-->
-                <script src="{{ asset('js/bower_components/angular-resource/angular-resource.min.js') }}"></script>
+                <script src="{{ asset('js/controllers/ContactController.js') }}"></script> <!-- load our controller -->
+                <script src="{{ asset('js/services/ContactService.js') }}"></script> <!-- load our service -->
 
-<!-- datepicker
+    <!-- datepicker
     <script src="{{ asset('js/plugins/datepicker/bootstrap-datepicker.js') }}" type="text/javascript"></script>-->
-<!-- Bootstrap WYSIHTML5
+    <!-- Bootstrap WYSIHTML5
     <script src="{{ asset('js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') }}" type="text/javascript"></script>-->
     <!-- iCheck -->
     <script src="{{ asset('js/plugins/iCheck/icheck.min.js') }}" type="text/javascript"></script>
@@ -310,6 +316,9 @@
     <script src="{{ asset('js/plugins/timeago/jquery.timeago.js') }}" type="text/javascript"></script>
     <!-- ng-infinite-scroll -->
     <script src="{{ asset('js/plugins/ng-infinite-scroll/ng-infinite-scroll.min.js') }}" type="text/javascript"></script>
+
+    <!-- Bootstrap Select -->
+    <script src="{{ asset('js/plugins/bootstrap-select/bootstrap-select.min.js') }}" rel="stylesheet" type="text/css"></script>
 
     <!-- Director App -->
     <script src="{{ asset('js/Director/app.js') }}" type="text/javascript"></script>
