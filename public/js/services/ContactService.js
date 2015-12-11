@@ -21,12 +21,12 @@ angular.module('ContactService', [])
 
     return {
         // get all the contacts
-        get : function() {
-            return $http.get( url );
+        get : function(  ) {
+            return $http.get( window.location.protocol + '//' + window.location.hostname + '/api/contacts' );
         },
 
         // save a contact (pass in contact data)
-        save : function(contactData) {
+        save : function( contactData ) {
             return $http({
                 method: 'POST',
                 url: url,
@@ -36,12 +36,18 @@ angular.module('ContactService', [])
         },
 
         // destroy a contact
-        destroy : function(id) {
+        destroy : function( id ) {
             return $http.delete( url + '/' + id);
         },
 
+        // attach a contact
+        attach : function( data ) {
+            console.log( data );
+            return $http.get( url + '/' + data + '/attach');
+        },
+
         // dettach a contact
-        dettach : function(contact_id) {
+        dettach : function( contact_id ) {
             return $http.get( url + '/' + contact_id + '/dettach');
         }
     }

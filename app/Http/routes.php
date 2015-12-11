@@ -77,7 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 
 	Route::group(['prefix' => 'api'], function () {
-		
+			
 		Route::get('/{resource_name?}/{resource_id?}/{resource_relationship?}/{related_resource_id?}/{related_related_resource?}', 'ApiController@index');	
 		Route::post('/{resource_name?}/{resource_id?}/{resource_relationship?}/{related_resource_id?}/{related_related_resource?}', 'ApiController@store');	
 		

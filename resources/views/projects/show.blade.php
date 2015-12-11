@@ -150,7 +150,37 @@
 		        </div>
 		        <div role="tabpanel" class="tab-pane" id="contatos" ng-controller="ContactController">
 		        	<div class="navbar">
-			        	<div class="navbar-right">	    
+			        	<div class="navbar-right">
+
+							<a class="btn btn-primary" data-toggle="modal" href='#contacts-picker'>Trigger modal</a>
+							<div class="modal fade" id="contacts-picker">
+								<div class="modal-dialog">
+									<div class="modal-content">
+
+										<form ng-submit="attachContacts()">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+												<h4 class="modal-title">Vincular contatos</h4>
+											</div>
+
+											<!-- LOADING ICON =============================================== -->
+										    <!-- show loading icon if the loading variable is set to true -->
+										    <p class="text-center well-sm" ng-show="loading">
+										    	<span class="text-muted fa fa-spinner fa-2x fa-spin"></span>
+										    </p>
+
+												@include('contacts.picker', ['contacts' => $contacts])
+											
+											<div class="modal-footer text-uppercase">
+												<button type="button" class="btn btn-sm btn-default" data-dismiss="modal">CANCELA</button>
+												<button type="submit" class="btn btn-sm btn-success">VINCULAR À OBRA</button>
+											</div>
+										</form>
+
+									</div>
+								</div>
+							</div>
+
 		                	<a href="{!! url('obras/'.$project->id.'/contatos/add') !!}" class="btn btn-success btn-xs navbar-btn"><i class="fa fa-plus"></i> ADICIONAR</a>
 		        			<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 							  	Button with data-target
@@ -161,23 +191,9 @@
 			        	</div>
 		        	</div>
 		        	<div class="collapse" id="collapseExample">
-			        	<form action="" method="POST" role="form" class="form-inline well well-sm">
-								
-							<div class="form-group">
-								<label class="sr-only" for="">label</label>
-								<input type="email" class="form-control" id="" placeholder="Input field">
-							</div>
-							<div class="form-group">
-								<label for="input" class="col-sm-2 control-label">:</label>
-								<select class="selectpicker">									
-								    <option data-content="<span class='label label-success'>Relish</span>">Relish</option>
-								    <option data-content="<span class='label label-success'>Relish</span>">Relish</option>
-								</select>
-							</div>
-													
-							<button type="submit" class="btn btn-primary">Submit</button>
 
-						</form>		        		
+		        		@include('contacts.create-form')
+			        
 		        	</div>
 		        	<div class="" >
 
