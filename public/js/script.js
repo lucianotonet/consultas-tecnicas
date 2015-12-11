@@ -94,7 +94,7 @@
                     $http.get( url + '/' + response[i].id + '/technical_consults' )
                         .success(function( response_tc ){
                             item.technical_consults = response_tc;
-                            console.log( response_tc );
+                            // console.log( response_tc );
                         });
                     this.items.push( item );
                 };
@@ -161,6 +161,6 @@
     
     $('.nav.nav-tabs').stickyTabs();
 
-    $('.selectpicker').selectpicker();
+    // $('.selectpicker').selectpicker();
 
 }( jQuery ));

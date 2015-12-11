@@ -8,8 +8,8 @@ class Contact extends Model {
 
 	protected $table = 'contatos';
 	public $timestamps = true;
-	protected $fillable = array('email', 'name', 'company', 'address', 'phones', 'notes', 'owner_id', 'client_id');
-	protected $visible = array('email', 'name', 'company', 'address', 'phones', 'notes', 'owner_id', 'client_id');
+	protected $fillable = array('id', 'email', 'name', 'company', 'address', 'phones', 'notes', 'owner_id', 'client_id');
+	protected $visible = array('id', 'email', 'name', 'company', 'address', 'phones', 'notes', 'owner_id', 'client_id');
 
 	public function owner()
 	{

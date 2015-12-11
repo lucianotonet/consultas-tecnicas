@@ -128,6 +128,11 @@ class ApiController extends Controller
         //
     }
 
+
+    public function attach( Request $request, $resource_name = null, $resource_id = null, $attached_resource_name = null, $attached_resource_id = null){
+        return " resource_name:" . $resource_name . " resource_id:" . $resource_id . " attached_resource_name:" . $attached_resource_name . " attached_resource_id:" . $attached_resource_id;
+    }
+
     /**
      * Store a newly created resource in storage.
      *

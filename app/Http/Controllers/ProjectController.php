@@ -26,9 +26,11 @@ class ProjectController extends Controller {
                                 ->paginate( $request->input( 'paginate', 50 ) );
         }else{
             $projects = $request->user()->projects;        
-        }       
+        }
 
-        return view( 'projects.index' )->with( 'projects', $projects );
+        $clients = $request->user()->clients;      
+
+        return view( 'projects.index' )->with(['projects'=>$projects, 'clients'=>$clients]);
     }
 
     /**
@@ -110,13 +112,23 @@ class ProjectController extends Controller {
 
         // $contact = Contact::first();
 
-        // $project->contacts()->attach( $contact->id );\
+        // $project->contacts()->attach( $contact->id );
 
         // return $contact;
 
 
         $project->load('stages'); // Carrega etapas
-        return view( 'projects.show' )->with( 'project', $project );
+        $contacts = $request->user()->contacts;
+
+
+        $contacts = $contacts->filter( function($contact) use ($project)
+        {
+            if ( !$project->contacts->contains( $contact->id ) ) {
+                return true;   
+            }
+        });
+
+        return view( 'projects.show' )->with(['project'=>$project, 'contacts'=>$contacts]);
 
     }
 
